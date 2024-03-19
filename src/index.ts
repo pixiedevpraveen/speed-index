@@ -1,7 +1,7 @@
 import { Node } from "./node"
 
 /**-----------------------------------------------------
- * Red Black tree for indexing.
+ * Red Black tree with filters for indexing.
  * ----
  *
  * @author Praveen yadav
@@ -524,5 +524,3 @@ export class SpeedIndex<K extends number | string, V> {
         if (x) x.isRed = false
     }
 }
-
-export default SpeedIndex

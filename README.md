@@ -6,7 +6,7 @@
 [![JSDocs][jsdocs-src]][jsdocs-href]
 [![License][license-src]][license-href]
 
-Red Black tree for indexing.
+Red Black tree with filters for indexing.
 
 
 <!-- Badges -->

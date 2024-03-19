@@ -1,8 +1,8 @@
 {
   "name": "speed-index",
   "type": "module",
-  "version": "0.1.1",
-  "description": "Red Black tree for indexing.",
+  "version": "0.1.2",
+  "description": "Red Black tree with filters for indexing.",
   "author": "Praveen Yadav",
   "license": "MIT",
   "homepage": "https://github.com/pixiedevpraveen/speed-index#readme",
