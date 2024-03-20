@@ -181,9 +181,10 @@ export class SpeedIndex<K extends number | string, V> {
     }
 
     /**
-     * update value from the 
+     * update value and return previous value.
+     * @param upsert insert if not present and return value if inserted else undefined
     */
-    update(key: K, val: V): V | undefined {
+    update(key: K, val: V, upsert=false): V | undefined {
         /**
          * node to update
         */
@@ -192,7 +193,7 @@ export class SpeedIndex<K extends number | string, V> {
             const p = n.value
             n.value = val
             return p
-        }
+        } else if (upsert && this.insert(key, val)) return val
     }
 
     /**
