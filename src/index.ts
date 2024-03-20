@@ -68,6 +68,14 @@ export class SpeedIndex<K extends number | string, V> {
         return true
     }
 
+    /**
+     * set key and value in the tree and return true if set else false.
+     * if found the key then update the value. Its just an alias to call insert with upsert as true.
+    */
+    set(key: K, val: V): boolean {
+        return this.insert(key, val, true)
+    }
+
     private setMinMax(n: Node<K, V>) {
         if (!this.mx || this.mx.key < n.key)
             this.mx = n
