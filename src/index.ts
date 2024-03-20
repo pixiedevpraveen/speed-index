@@ -10,7 +10,7 @@ import { Node } from "./node"
  * @example
  * const tree = new SpeedIndex<number, string>();
  * tree.insert(23, "value of 23")
- * tree.find(23) // "value of 23"
+ * tree.get(23) // "value of 23"
  */
 export class SpeedIndex<K extends number | string, V> {
     private root: Node<K, V> | null = null
@@ -24,9 +24,10 @@ export class SpeedIndex<K extends number | string, V> {
     private mx: Node<K, V> | null = null
 
     /**
-     * insert key and value in the tree
+     * insert key and value in the tree and return true if inserted and false if found the key (if upsert=false).
+     * @param upsert insert if not present and return true if inserted else false
     */
-    insert(key: K, val: V): boolean {
+    insert(key: K, val: V, upsert = false): boolean {
         const n = new Node(key, val)
 
         let cn = this.root
@@ -35,8 +36,13 @@ export class SpeedIndex<K extends number | string, V> {
              * current node to traverse
             */
             while (true) {
-                if (key === cn.key)
+                if (key === cn.key) {
+                    if (upsert) {
+                        cn.value = val
+                        break
+                    }
                     return false
+                }
                 else if (key < cn.key) {
                     if (!cn.left) {
                         cn.left = n
@@ -70,10 +76,10 @@ export class SpeedIndex<K extends number | string, V> {
     }
 
     /**
-     * find the value using the provided key
+     * get the value using the provided key
      * @param key key to find
     */
-    find(key: K): V | undefined {
+    get(key: K): V | undefined {
         return this.findNode(key)?.value
     }
 
@@ -181,10 +187,9 @@ export class SpeedIndex<K extends number | string, V> {
     }
 
     /**
-     * update value and return previous value.
-     * @param upsert insert if not present and return value if inserted else undefined
+     * update value and return previous value if found else undefined.
     */
-    update(key: K, val: V, upsert=false): V | undefined {
+    update(key: K, val: V): V | undefined {
         /**
          * node to update
         */
@@ -193,7 +198,7 @@ export class SpeedIndex<K extends number | string, V> {
             const p = n.value
             n.value = val
             return p
-        } else if (upsert && this.insert(key, val)) return val
+        }
     }
 
     /**
