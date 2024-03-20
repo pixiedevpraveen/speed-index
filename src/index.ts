@@ -537,4 +537,11 @@ export class SpeedIndex<K extends any, V> {
         }
         if (x) x.isRed = false
     }
+
+    /**
+     * method to clear the tree.
+     */
+    clear(): void {
+        this.root = this.mx = this.mn = null
+    }
 }
