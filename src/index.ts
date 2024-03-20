@@ -12,7 +12,7 @@ import { Node } from "./node"
  * tree.insert(23, "value of 23")
  * tree.get(23) // "value of 23"
  */
-export class SpeedIndex<K extends number | string, V> {
+export class SpeedIndex<K extends any, V> {
     private root: Node<K, V> | null = null
     /**
      * min node
