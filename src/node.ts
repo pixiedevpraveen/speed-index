@@ -1,4 +1,4 @@
-export class Node<K extends number | string, V> {
+export class Node<K extends any, V> {
     /**
      * Key to compare
     */
